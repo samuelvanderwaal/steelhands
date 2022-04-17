@@ -23,4 +23,26 @@ pub mod steelhands {
 
         Ok(())
     }
+
+    pub fn update(
+        ctx: Context<Update>,
+        unlock_time: Option<i64>,
+        unlock_amount: Option<u64>,
+    ) -> Result<()> {
+        vault::update(ctx, unlock_time, unlock_amount)?;
+
+        Ok(())
+    }
+
+    pub fn activate(ctx: Context<Activate>) -> Result<()> {
+        vault::activate(ctx)?;
+
+        Ok(())
+    }
+
+    pub fn close(ctx: Context<Close>) -> Result<()> {
+        vault::close(ctx)?;
+
+        Ok(())
+    }
 }
