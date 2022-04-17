@@ -182,6 +182,7 @@ pub fn close(ctx: Context<Close>) -> Result<()> {
     } else {
         // Ok to close vault if it's not active.
         close_vault(vault, withdraw_address);
+        return Ok(());
     }
 
     return Err(SteelError::FailedToCloseVault.into());

@@ -35,6 +35,16 @@ describe("steelhands", () => {
     expect(vaultState.active).to.be.false;
   });
 
+  it("closes an an inactive vault", async () => {
+    let authority = await createNewAuthority();
+
+    const initTx = await initialize(program, authority, TS, ONE_SOL);
+    console.log("Initialized vault:", initTx);
+
+    const closeTx = await close(program, authority);
+    console.log("Closed vault:", closeTx);
+  });
+
   it("prevents updating an active vault", async () => {
     let authority = await createNewAuthority();
 
