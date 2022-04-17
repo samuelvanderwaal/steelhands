@@ -168,13 +168,13 @@ pub fn close(ctx: Context<Close>) -> Result<()> {
 
     if vault.active {
         if vault.unlock_time != 0 {
-            if clock.unix_timestamp > vault.unlock_time {
+            if clock.unix_timestamp >= vault.unlock_time {
                 close_vault(vault, withdraw_address);
                 return Ok(());
             }
         }
         if vault.unlock_amount != 0 {
-            if vault.unlock_amount <= vault_balance {
+            if vault.unlock_amount < vault_balance {
                 close_vault(vault, withdraw_address);
                 return Ok(());
             }
