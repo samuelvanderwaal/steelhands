@@ -8,7 +8,7 @@ pub use constants::*;
 pub use errors::*;
 pub use vault::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("GJbHi5bV138ruTeHUWKLSV53HK57P7JNVFNcBXyPWc1L");
 
 #[program]
 pub mod steelhands {

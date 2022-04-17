@@ -35,7 +35,8 @@ pub fn initialize(
     let vault = &mut ctx.accounts.vault;
     let clock = Clock::get()?;
 
-    vault.bump = *ctx.bumps.get("bump").ok_or(SteelError::MissingVaultBump)?;
+    vault.authority = ctx.accounts.authority.key();
+    vault.bump = *ctx.bumps.get("vault").ok_or(SteelError::MissingVaultBump)?;
     vault.active = false;
     vault.unlock_time = 0;
     vault.unlock_amount = 0;
@@ -142,6 +143,7 @@ pub struct Close<'info> {
     #[account(mut)]
     pub authority: Signer<'info>,
 
+    /// CHECK: This is only used to send lamports to from the closed vault.
     #[account(mut)]
     pub withdraw_address: AccountInfo<'info>,
 
